@@ -1,0 +1,6 @@
+{
+  "name": "2026清教学園高校文化祭 オンライン鑑賞ガイド",
+  "description": "2026年清教学園高校文化祭の公式オンライン鑑賞ガイド。ご挨拶、生徒スケジュール、クラス企画詳細、リアルタイム混雑状況モニター、校内マップ、お知らせ配信機能を搭載。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

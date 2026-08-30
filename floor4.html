@@ -1,0 +1,132 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>4階 校内マップ</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <header class="map-header">
+
+        <a
+            href="index.html"
+            class="back-button"
+        >
+            ← 階数選択
+        </a>
+
+
+        <h1>4階 校内マップ</h1>
+
+    </header>
+
+
+    <main>
+
+        <div class="map-container">
+
+            <img
+                src="images/floor4.png"
+                class="map-image"
+                alt="4階 校内マップ"
+            >
+
+
+            <div id="map-buttons"></div>
+
+        </div>
+
+    </main>
+
+
+    <div
+        id="popup-overlay"
+        class="popup-overlay"
+    >
+
+        <div
+            class="popup"
+            role="dialog"
+            aria-modal="true"
+        >
+
+            <button
+                id="close-button"
+                class="close-button"
+                aria-label="閉じる"
+            >
+                ×
+            </button>
+
+
+            <div class="popup-content">
+
+                <div
+                    id="popup-category"
+                    class="popup-category"
+                ></div>
+
+
+                <h2 id="popup-title"></h2>
+
+
+                <p
+                    id="popup-description"
+                    class="popup-description"
+                ></p>
+
+
+                <div class="popup-details">
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            📍 場所
+                        </span>
+
+                        <span id="popup-location">
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span class="detail-label">
+                            🕐 利用時間
+                        </span>
+
+                        <span id="popup-time">
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+```

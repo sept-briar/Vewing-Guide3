@@ -1,0 +1,530 @@
+css
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Yu Gothic",
+        "Hiragino Kaku Gothic ProN",
+        sans-serif;
+
+    background: #f5f6f8;
+
+    color: #222;
+}
+
+
+/* =================================
+   トップページ
+   ================================= */
+
+.header {
+    padding: 35px 20px;
+
+    text-align: center;
+
+    background: white;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+.header h1 {
+    margin: 0 0 10px;
+
+    font-size: 30px;
+}
+
+
+.header p {
+    margin: 0;
+
+    color: #777;
+}
+
+
+/* =================================
+   階数選択
+   ================================= */
+
+.floor-menu {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
+    gap: 20px;
+
+    width: calc(100% - 40px);
+
+    max-width: 800px;
+
+    margin: 40px auto;
+}
+
+
+.floor-card {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 150px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    color: #222;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.07);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.floor-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+.floor-card span {
+    font-size: 38px;
+
+    font-weight: bold;
+}
+
+
+.floor-card strong {
+    font-size: 18px;
+}
+
+
+/* =================================
+   階ごとのヘッダー
+   ================================= */
+
+.map-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 18px 25px;
+
+    background: white;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+.map-header h1 {
+    margin: 0;
+
+    font-size: 24px;
+}
+
+
+.back-button {
+    color: #555;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+
+.back-button:hover {
+    text-decoration: underline;
+}
+
+
+/* =================================
+   マップ
+   ================================= */
+
+.map-container {
+    position: relative;
+
+    width: calc(100% - 40px);
+
+    max-width: 1200px;
+
+    margin: 30px auto;
+
+    overflow: hidden;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+.map-image {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+}
+
+
+/* =================================
+   マップ上のタップ領域
+   ================================= */
+
+#map-buttons {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+
+.map-button {
+    position: absolute;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    pointer-events: auto;
+
+    border: 2px solid transparent;
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+
+/*
+    ポップアップがある場所。
+
+    太字・下線・薄い背景で
+    「ここは押せる！」と分かるようにする。
+*/
+
+.map-button.has-popup {
+    background: rgba(255, 255, 255, 0.35);
+
+    border-color: rgba(0, 0, 0, 0.25);
+
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+
+.map-button.has-popup::after {
+    content: "";
+
+    position: absolute;
+
+    left: 8%;
+
+    right: 8%;
+
+    bottom: 5%;
+
+    height: 2px;
+
+    background: currentColor;
+}
+
+
+/* マウスを乗せたとき */
+
+.map-button.has-popup:hover {
+    background: rgba(255, 255, 255, 0.65);
+
+    border-color: rgba(0, 0, 0, 0.45);
+}
+
+
+/* =================================
+   ポップアップ背景
+   ================================= */
+
+.popup-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(0, 0, 0, 0.48);
+
+    backdrop-filter: blur(5px);
+}
+
+
+.popup-overlay.active {
+    display: flex;
+
+    animation: fade-in 0.2s ease;
+}
+
+
+/* =================================
+   ポップアップ本体
+   ================================= */
+
+.popup {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 750px;
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.25);
+
+    animation: popup-open 0.25s ease;
+}
+
+
+.popup-content {
+    padding: 45px;
+}
+
+
+.popup-category {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    padding: 5px 12px;
+
+    border-radius: 20px;
+
+    background: #eeeeee;
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+
+.popup h2 {
+    margin: 0 0 18px;
+
+    font-size: 32px;
+}
+
+
+.popup-description {
+    margin: 0 0 28px;
+
+    color: #555;
+
+    line-height: 1.9;
+
+    white-space: pre-line;
+}
+
+
+/* =================================
+   ポップアップ詳細
+   ================================= */
+
+.popup-details {
+    display: grid;
+
+    gap: 10px;
+}
+
+
+.detail {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding: 14px 16px;
+
+    background: #f7f7f7;
+
+    border-radius: 12px;
+}
+
+
+.detail-label {
+    color: #888;
+
+    font-size: 12px;
+}
+
+
+/* =================================
+   閉じるボタン
+   ================================= */
+
+.close-button {
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    z-index: 10;
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    color: #333;
+
+    font-size: 27px;
+
+    cursor: pointer;
+}
+
+
+.close-button:hover {
+    background: #dddddd;
+}
+
+
+/* =================================
+   アニメーション
+   ================================= */
+
+@keyframes fade-in {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes popup-open {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =================================
+   スマホ
+   ================================= */
+
+@media (max-width: 600px) {
+
+    .map-header {
+        padding: 15px;
+
+        gap: 12px;
+    }
+
+
+    .map-header h1 {
+        font-size: 19px;
+    }
+
+
+    .map-container {
+        width: calc(100% - 20px);
+
+        margin: 15px auto;
+
+        border-radius: 12px;
+    }
+
+
+    .popup-overlay {
+        padding: 15px;
+    }
+
+
+    .popup {
+        max-height: 90vh;
+
+        border-radius: 20px;
+    }
+
+
+    .popup-content {
+        padding: 40px 22px 28px;
+    }
+
+
+    .popup h2 {
+        font-size: 25px;
+    }
+
+}
+
