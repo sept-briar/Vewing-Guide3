@@ -1,0 +1,29 @@
+{
+  "name": "2026 清教学園高校文化祭鑑賞ガイド",
+  "short_name": "清教文化祭",
+  "description": "清教学園高等学校 文化祭公式オンライン鑑賞ガイド。クラス企画・タイムテーブル・リアルタイム混雑モニター。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#064e3b",
+  "theme_color": "#064e3b",
+  "orientation": "portrait-primary",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "./favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
